@@ -3,11 +3,13 @@ ubuntu_apache_packages:
   - apache2
   - libapache2-mod-php8.2
   - libsmbclient
+  - python3-cryptography
 
 rocky_httpd_packages:
   - httpd
   - mod_ssl
   - libsmbclient
+  - python3-cryptography
 
 ubuntu_mariadb_packages:
  - mariadb-server
