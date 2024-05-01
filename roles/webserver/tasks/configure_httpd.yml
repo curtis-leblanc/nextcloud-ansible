@@ -1,0 +1,21 @@
+---
+- name: ensure httpd directories exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - /etc/httpd/sites-available
+    - /etc/httpd/sites-enabled
+
+- name: configure httpd conf file on rocky
+  template:
+    src: nextcloud.conf.j2
+    dest: /etc/httpd/sites-available/nextcloud.conf
+
+- name: symlink httpd conf from sites available to sites enabled
+  file:
+    src: /etc/httpd/sites-available/nextcloud.conf
+    dest: /etc/httpd/sites-enabled/nextcloud.conf
+    state: link
+  notify: restart httpd

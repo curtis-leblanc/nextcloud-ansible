@@ -1,0 +1,18 @@
+---
+- name: configure apache2 conf file on ubuntu
+  template:
+    src: nextcloud.conf.j2
+    dest: /etc/apache2/sites-available/nextcloud.conf
+
+- name: disable default apache2 site on ubuntu
+  shell:
+    cmd: /usr/sbin/a2dissite 000-default.conf
+
+- name: enable ssl and headers for apache2 on ubuntu
+  shell:
+    cmd: /usr/sbin/a2enmod ssl headers
+
+- name: enable nextcloud site on ubuntu
+  shell:
+    cmd: /usr/sbin/a2ensite nextcloud.conf
+  notify: restart apache2

@@ -1,0 +1,7 @@
+---
+- name: include enable_database.yml
+  include_tasks: enable_database.yml
+
+- name: include configure_database.yml
+  include_tasks: configure_database.yml
+

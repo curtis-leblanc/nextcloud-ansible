@@ -1,0 +1,5 @@
+---
+- name: Add PHP repo on ubuntu
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+  when: ansible_distribution == 'Ubuntu'

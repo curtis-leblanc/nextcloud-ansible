@@ -1,0 +1,24 @@
+# Nextcloud version to use - latest/27.1
+nextcloud_version: latest
+# Directory where nextcloud data lives
+nextcloud_data_dir: /srv/nextcloud
+# Preferred to use domain name, if not available use IP address
+server_name: nextcloud.com
+# If using self signed certificate - no if using lets_encrypt
+selfsigned_ssl_certificate: true
+# Path to self signed certificate
+ssl_crt_path: /etc/ssl/certs/nextcloud.crt
+# Path to self signed certifcate key
+ssl_key_path: /etc/ssl/private/nextcloud.key
+# If backing storage is ZFS, creates dataset + snapshot schedule on nextcloud data directory + database
+zfs_pool: tank
+# HTTP port
+http_port: 80
+# HTTPS port
+https_port: 443
+
+#php_upload:
+#php_memory_limit: 128M
+#php_post_max_size: 8M
+#php_upload_max_filesize: 2M
+#php_max_file_uploads: 20

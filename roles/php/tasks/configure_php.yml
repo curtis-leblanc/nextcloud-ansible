@@ -1,0 +1,15 @@
+---
+- name: set php memory_limit to 1024M on ubuntu
+  replace:
+    path: /etc/php/8.2/fpm/php.ini
+    regexp: '128M'
+    replace: '1024M'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: set php memory_limit to 1024M on rocky
+  replace:
+    path: /etc/opt/remi/php82/php.ini
+    regexp: '128M'
+    replace: '1024M'
+  when: ansible_distribution == 'Rocky'
+

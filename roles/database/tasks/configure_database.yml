@@ -1,0 +1,42 @@
+---
+- name: create nextcloud database on ubuntu
+  community.mysql.mysql_db:
+    name: nextcloud
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    collation: utf8mb4_general_ci
+    encoding: utf8mb4
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: create nextcloud database user on ubuntu
+  community.mysql.mysql_user:
+    name: nextcloud_database
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    host: localhost
+    password: password
+    priv: "*.*:USAGE/nextcloud.*:ALL"
+    state: present
+  when: ansible_distribution == 'Ubuntu'
+
+- name: create nextcloud database on rocky
+  community.mysql.mysql_db:
+    name: nextcloud
+    login_unix_socket: /var/lib/mysql/mysql.sock
+    login_user: root
+    login_password: ''
+    collation: utf8mb4_general_ci
+    encoding: utf8mb4
+    state: present
+  when: ansible_distribution == 'Rocky'
+
+- name: create nextcloud database user
+  community.mysql.mysql_user:
+    name: nextcloud_database
+    login_unix_socket: /var/lib/mysql/mysql.sock
+    login_user: root
+    login_password: ''
+    host: localhost
+    password: password
+    priv: "*.*:USAGE/nextcloud.*:ALL"
+    state: present
+  when: ansible_distribution == 'Rocky'

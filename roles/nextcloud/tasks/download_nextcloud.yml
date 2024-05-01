@@ -1,0 +1,37 @@
+---
+- name: create nextcloud data directory dataset with zfs
+  zfs:
+    name: "{{ zfs_pool }}/nextcloud"
+    state: present
+    extra_zfs_properties:
+      mountpoint: '/srv/nextcloud'
+  when: zfs_pool is defined
+
+- name: create nextcloud data directory
+  file:
+    path: /srv/nextcloud
+    state: directory
+  when: zfs_pool is undefined
+  
+- name: download and extract nextcloud
+  ansible.builtin.unarchive:
+    src: https://download.nextcloud.com/server/releases/latest-27.tar.bz2
+    dest: /srv
+    remote_src: yes
+    list_files: true
+    mode: '775'
+    owner: www-data
+    group: www-data
+  when: ansible_distribution == 'Ubuntu'
+
+- name: download and extract nextcloud on rocky
+  ansible.builtin.unarchive:
+    src: https://download.nextcloud.com/server/releases/latest-27.tar.bz2
+    dest: /srv
+    remote_src: yes
+    list_files: true
+    mode: '775'
+    owner: apache
+    group: apache
+  when: ansible_distribution == 'Rocky'
+

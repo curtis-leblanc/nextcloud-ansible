@@ -1,0 +1,68 @@
+---
+ubuntu_apache_packages:
+  - apache2
+  - libapache2-mod-php8.2
+  - libsmbclient
+
+rocky_httpd_packages:
+  - httpd
+  - mod_ssl
+  - libsmbclient
+
+ubuntu_mariadb_packages:
+ - mariadb-server
+ - python3-pymysql
+
+rocky_mariadb_packages:
+ - mariadb-server
+ - python3-mysql
+
+ubuntu_php_packages:
+  - php8.2
+  - php8.2-bcmath
+  - php8.2-xml
+  - php8.2-fpm
+  - php8.2-mysql
+  - php8.2-zip
+  - php8.2-intl
+  - php8.2-ldap
+  - php8.2-gd
+  - php8.2-cli
+  - php8.2-bz2
+  - php8.2-curl
+  - php8.2-mbstring
+  - php8.2-pgsql
+  - php8.2-opcache
+  - php8.2-soap
+  - php8.2-cgi
+
+rocky_php_packages:
+  - php82
+  - php82-php
+  - php82-php-fpm
+  - php82-php-ldap
+  - php82-php-soap
+  - php82-php-bcmath
+  - php82-php-cli
+  - php82-php-ctype
+  - php82-php-curl
+  - php82-php-gd
+  - php82-php-gmp
+  - php82-php-iconv
+  - php82-php-intl
+  - php82-php-json
+  - php82-php-libxml
+  - php82-php-mbstring
+  - php82-php-mysqlnd
+  - php82-php-opcache
+  - php82-php-openssl
+  - php82-php-pecl-apcu
+  - php82-php-pecl-imagick
+  - php82-php-pecl-redis
+  - php82-php-pdo
+  - php82-php-posix
+  - php82-php-smbclient
+  - php82-php-session
+  - php82-php-xml
+  - php82-php-zip
+  - php82-php-zlib

@@ -1,0 +1,23 @@
+---
+- name: Ensure private key directory exists
+  file:
+    path: /etc/ssl/private
+    state: directory
+    mode: 0700
+
+- name: Generate a private key
+  community.crypto.openssl_privatekey:
+    path: "{{ ssl_key_path }}"
+    size: 4096
+
+- name: Ensure self signed certificate directory exists
+  file:
+    path: /etc/ssl/certs
+    state: directory
+    mode: 0755
+
+- name: create self signed certificate
+  community.crypto.x509_certificate:
+    path: "{{ ssl_crt_path }}"
+    privatekey_path: "{{ ssl_key_path }}"
+    provider: selfsigned

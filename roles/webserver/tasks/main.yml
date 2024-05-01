@@ -1,0 +1,11 @@
+---
+- name: include generate_selfsigned_ssl_certificate.yml
+  include_tasks: generate_selfsigned_ssl_certificate.yml
+
+- name: include configure_apache2.yml
+  include_tasks: configure_apache2.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: include configure_httpd.yml
+  include_tasks: configure_httpd.yml
+  when: ansible_distribution == 'Rocky'

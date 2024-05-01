@@ -1,0 +1,20 @@
+---
+- name: install mariadb on ubuntu
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ mariadb_packages_ubuntu }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install mariadb on rocky
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ mariadb_packages_rocky }}"
+  when: ansible_distribution == 'Rocky'
+
+- name: enable mariadb
+  service:
+    name: mariadb
+    state: started
+    enabled: yes

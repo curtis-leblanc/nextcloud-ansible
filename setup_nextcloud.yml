@@ -1,0 +1,22 @@
+---
+- hosts:
+  - nextcloud
+
+  gather_facts: true
+  any_errors_fatal: true
+  become: true
+
+  vars:
+   delegate_facts_host: true
+
+  tasks:
+   - import_role:
+       name: packages
+   - import_role:
+       name: nextcloud
+   - import_role:
+       name: php
+   - import_role:
+       name: database
+   - import_role:
+       name: webserver

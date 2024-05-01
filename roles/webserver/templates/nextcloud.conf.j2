@@ -1,0 +1,40 @@
+<VirtualHost *:80>
+  ServerName {{ server_name }}
+  Redirect / https://{{ server_name }}/
+</VirtualHost>
+<VirtualHost *:443>
+  DocumentRoot /srv/nextcloud/
+  ServerName {{ server_name }}
+  ServerAlias {{ ansible_default_ipv4.address }}
+  SSLEngine on
+  SSLCertificateFile {{ ssl_crt_path }}
+  SSLCertificateKeyFile {{ ssl_key_path }}  
+  SSLProtocol -all +TLSv1.2 +TLSv1.3
+  SSLCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256
+  SSLHonorCipherOrder on
+  SSLCompression off
+  SSLSessionTickets off
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+
+{% if ansible_facts['distribution'] == 'Ubuntu' %}
+  ErrorLog /var/log/apache2/nextcloud-error.log
+  CustomLog /var/log/apache2/nextcloud-access.log combined
+{% elif ansible_facts['distribution'] == 'Rocky' %}
+  ErrorLog /var/log/httpd/nextcloud-error.log
+  CustomLog /var/log/httpd/nextcloud-access.log combined
+{% endif %}
+
+  <Directory /srv/nextcloud/>
+    Require all granted
+    AllowOverride All
+    Options FollowSymLinks MultiViews
+
+    <IfModule mod_dav.c>
+      Dav off
+    </IfModule>
+  </Directory>
+</VirtualHost>

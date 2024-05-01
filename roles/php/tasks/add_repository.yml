@@ -1,0 +1,17 @@
+---
+- name: Add PHP repo on ubuntu
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+  when: ansible_distribution == 'Ubuntu'
+
+- name: add PHP repo gpg on rocky
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpms.remirepo.net/enterprise/8/RPM-GPG-KEY-remi
+  when: ansible_distribution == 'Rocky'
+
+- name: add PHP repo on rocky
+  ansible.builtin.dnf:
+    name: 'https://rpms.remirepo.net/enterprise/remi-release-8.rpm'
+    state: present
+  when: ansible_distribution == 'Rocky'
