@@ -1,0 +1,12 @@
+---
+- name: open http port
+  ansible.posix_firewalld:
+    service: http
+    permanent: true
+    state: enabled
+
+- name: open https port
+  ansible.posix_firewalld:
+    service: https
+    permanent: true
+    state: enabled
