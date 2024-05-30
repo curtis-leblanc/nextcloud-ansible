@@ -1,4 +1,7 @@
 ---
+- name: include configure_firewall.yml
+  include_tasks: configure_firewall.yml
+
 - name: include generate_selfsigned_ssl_certificate.yml
   include_tasks: generate_selfsigned_ssl_certificate.yml
 

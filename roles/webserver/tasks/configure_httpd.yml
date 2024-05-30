@@ -19,3 +19,9 @@
     dest: /etc/httpd/sites-enabled/nextcloud.conf
     state: link
   notify: restart httpd
+
+- name: include nextcloud.conf in httpd conf
+  ansible.builtin.lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    line: Include sites-enabled/nextcloud.conf
+    create: yes
