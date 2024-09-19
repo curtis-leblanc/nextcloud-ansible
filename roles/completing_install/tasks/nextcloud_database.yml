@@ -1,0 +1,48 @@
+---
+- name: add missing columns to Nextcloud's database (Rocky)
+  become_user: apache
+  shell: |
+    php82 occ db:add-missing-columns
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Rocky'
+
+- name: add missing indices to Nextcloud's database (Rocky)
+  become_user: apache
+  shell: |
+    php82 occ db:add-missing-indices
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Rocky'
+
+- name: add missing primary-keys to Nextcloud's database (Rocky)
+  become_user: apache
+  shell: |
+    php82 occ db:add-missing-primary-keys
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Rocky'
+
+- name: add missing columns to Nextcloud's database (Ubuntu)
+  become_user: www-data
+  shell: |
+    php occ db:add-missing-columns
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: add missing indices to Nextcloud's database (Ubuntu)
+  become_user: www-data
+  shell: |
+    php occ db:add-missing-indices
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: add missing primary-keys to Nextcloud's database (Ubuntu)
+  become_user: www-data
+  shell: |
+    php occ db:add-missing-primary-keys
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Ubuntu'

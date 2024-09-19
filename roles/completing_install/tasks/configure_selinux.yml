@@ -1,0 +1,44 @@
+---
+- name: Set SELinux context for Nextcloud's data folder
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/data(/.*)?"'
+
+- name: Set SELinux context for Nextcloud's config folder
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/config(/.*)?"'
+
+- name: Set SELinux context for Nextcloud's apps folder
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/apps(/.*)?"'
+
+- name: Set SELinux context for Nextcloud's .htaccess file.
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/.htaccess"'
+
+- name: Set SELinux context for Nextcloud's user.ini file.
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/.user.ini"'
+
+- name: Set SELinux context for Nextcloud's logging file.
+  shell: 
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}/3rdparty/aws/aws-sdk-php/src/data/logs(/.*)?"'
+
+- name: Set SELinux context for Nextcloud's data directory.
+  shell:
+    cmd: 'semanage fcontext -a -t httpd_sys_rw_content_t "{{ nextcloud_data_dir }}(/.*)?"'
+
+- name: SElinux database setting
+  shell:
+    cmd: setsebool -P httpd_can_network_connect_db on
+
+- name: SElinux connect setting
+  shell:
+    cmd: setsebool -P httpd_can_network_connect on
+
+- name: SElinux httpd united
+  shell:
+    cmd: setsebool httpd_unified on
+
+- name: Restore SELinux contexts for Nextcloud's data directory.
+  shell: 
+    cmd: 'restorecon -Rv "{{ nextcloud_data_dir }}"'

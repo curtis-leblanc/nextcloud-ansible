@@ -19,3 +19,24 @@
     state: present
   with_items: "{{ ubuntu_php_packages }}"
   when: ansible_distribution == 'Ubuntu'
+
+- name: install redis on ubuntu
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ubuntu_redis_packages }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install file extraction tools on ubuntu
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ubuntu_extract_packages }}"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: install imagemagick on ubuntu
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ubuntu_imagemagick_packages }}"
+  when: ansible_distribution == 'Ubuntu'

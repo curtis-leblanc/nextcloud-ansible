@@ -1,24 +1,68 @@
-# Nextcloud version to use - latest/27.1
+# Nextcloud version to use - latest/29.0
 nextcloud_version: latest
-# Directory where nextcloud data lives
+#Directory where Nextcloud will be installed.
+install_dir: /srv
+# Directory where nextcloud data lives. Should be same as the above variable followed by a Nextcloud directory (ex: if install_dir is set to /srv, this should be set to /srv/nextcloud.
 nextcloud_data_dir: /srv/nextcloud
 # Preferred to use domain name, if not available use IP address
-server_name: nextcloud.com
+server_name:  
 # If using self signed certificate - no if using lets_encrypt
 selfsigned_ssl_certificate: true
 # Path to self signed certificate
 ssl_crt_path: /etc/ssl/certs/nextcloud.crt
 # Path to self signed certifcate key
-ssl_key_path: /etc/ssl/private/nextcloud.key
+ssl_key_path: /etc/ssl/certs/nextcloud.key
 # If backing storage is ZFS, creates dataset + snapshot schedule on nextcloud data directory + database
-zfs_pool: tank
+#zfs_pool: tank
 # HTTP port
 http_port: 80
 # HTTPS port
 https_port: 443
 
+#Set the OPcache interned strings buffer size. Should be set to a power of two greater than 8. Exact number will depend on server specs.
+php_opcache: 16
 #php_upload:
 #php_memory_limit: 128M
 #php_post_max_size: 8M
 #php_upload_max_filesize: 2M
 #php_max_file_uploads: 20
+
+
+####################################################
+############### Database Variables #################
+
+
+#Enter your desired parameters for your database here.
+
+#Set the host for the database. If localhost, designate the port number if you changed the database's default port number (ex: localhost:9999 if you changed the port to 9999
+db_host: localhost
+#Name the database that Nextcloud will use.
+db_name: nextcloud_database
+#Name the database user that Nextcloud will use.
+db_user: nextcloud
+#Give the database user a strong password.
+db_pass: Sup3rs#creTp@ssw0rd
+
+####################################################
+############### Nextcloud Settings #################
+
+#Here, you can set parameters for your Nextcloud installation such as the required admin account username and password.
+
+#Name the Nextcloud admin account.
+next_admin: superuser
+#Give the admin account a strong password.
+next_pass: Sup#Rstr)ngp4s5w0rd
+#Add a default phone region for your Nextcloud server. The format is your country's two-letter ISO code. If you are not sure what your country's iso code is, find it here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+phone_region: CA  
+####################################################
+############### Optional Settings ##################
+
+#This section covers optional tasks that you may or may not want run for your installation.
+
+#If you use SElinux on your host and want it configured to allow Nextcloud to operate unimpeded, set to true.
+#selinux_config: true
+
+#If you want file locking configured within Nextcloud using Redis, set to true.
+file_locking: true
+
+ 

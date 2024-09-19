@@ -1,0 +1,34 @@
+---
+- name: Complete Nextcloud installation on Rocky
+  become: yes
+  become_user: apache
+  shell: |
+    php82 occ maintenance:install \
+      --database mysql \
+      --database-host "{{ db_host }}" \
+      --database-name "{{ db_name }}" \
+      --database-user "{{ db_user }}" \
+      --database-pass "{{ db_pass }}" \
+      --admin-user "{{ next_admin }}" \
+      --admin-pass "{{ next_pass }}" \
+      --data-dir "{{ nextcloud_data_dir }}/data"
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Rocky'
+
+- name: First Complete Nextcloud installation on Ubuntu
+  become: yes
+  become_user: www-data
+  shell: |
+    php occ maintenance:install \
+      --database mysql \
+      --database-host "{{ db_host }}" \
+      --database-name "{{ db_name }}" \
+      --database-user "{{ db_user }}" \
+      --database-pass "{{ db_pass }}" \
+      --admin-user "{{ next_admin }}" \
+      --admin-pass "{{ next_pass }}" \
+      --data-dir "{{ nextcloud_data_dir }}/data"
+  args:
+    chdir: "{{ nextcloud_data_dir }}"
+  when: ansible_distribution == 'Ubuntu'    

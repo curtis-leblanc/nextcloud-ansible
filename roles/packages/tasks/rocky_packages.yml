@@ -19,3 +19,10 @@
     state: present
   with_items: "{{ rocky_php_packages }}"
   when: ansible_distribution == 'Rocky'
+
+- name: install redis on rocky
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rocky_redis_packages }}"
+  when: ansible_distribution == 'Rocky'

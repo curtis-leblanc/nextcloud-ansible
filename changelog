@@ -1,0 +1,44 @@
+########## Changelog: 19/09/2024
+
+#Packages
+
+Added new Ubuntu PHP packages to /roles/packages/vars/main.yml
+-Redis
+-Imagick
+-APCu
+
+Added new Redis packages for installing Redis on Ubuntu and Rocky at /roles/packages/vars/main.yml
+
+Added new Ubuntu file extraction packages to /roles/packages/vars/main.yml
+-tar
+-unzip
+-bzip2
+
+Added new Imagemagick packages for Ubuntu at /roles/packages/vars/main.yml
+
+#Webserver
+
+Modified /roles/database/tasks/configure_database.yml to integrate variables modifiable at /group_vars/all.yml for ease of configuration.
+
+#PHP
+
+Modified /roles/php/tasks/configure_php.yml with the following changes.
+-Fixed file path setting for Ubuntu hosts in which the wrong php.ini file was being modified to increase the php memory limit.
+-Added task to enable the APCu cli tool to implement memory cache within Nextcloud.
+-Added task to modify the PHP OPcache interend strings buffer for improved Nextcloud functionality. The interned strings buffer value can be set at /group_vars/all.yml
+
+#Nextcloud
+
+Added variables to allow for more freedom in where Nextcloud is installed.
+
+#Webserver
+
+Fixed httpd not being enabled.
+Fixed firewall issues on Rocky hosts.
+
+#Completing Installation
+
+Added a new directory for tasks related to completing installation.
+Added tasks to complete Nextcloud install from the playbook itself.
+Added addition configuration settings to improve overall Nextcloud functionality.
+Added tasks to configure SElinux permissions if enabled.

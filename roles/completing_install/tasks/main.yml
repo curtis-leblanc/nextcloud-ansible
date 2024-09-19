@@ -1,0 +1,17 @@
+---
+- name: nextcloud_installation.yml
+  include_tasks: nextcloud_installation.yml
+
+- name: include configure_selinux.yml
+  include_tasks: configure_selinux.yml
+  when: selinux_config is defined
+
+- name: include configure_nextcloud_settings.yml
+  include_tasks: configure_nextcloud_settings.yml
+
+- name: include file_locking.yml
+  include_tasks: file_locking.yml
+  when: file_locking is defined
+
+- name: include nextcloud_database.yml
+  include_tasks: nextcloud_database.yml

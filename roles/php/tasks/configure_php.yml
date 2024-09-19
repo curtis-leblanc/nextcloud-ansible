@@ -1,7 +1,7 @@
 ---
 - name: set php memory_limit to 1024M on ubuntu
   replace:
-    path: /etc/php/8.2/fpm/php.ini
+    path: /etc/php/8.2/apache2/php.ini
     regexp: '128M'
     replace: '1024M'
   when: ansible_distribution == 'Ubuntu'
@@ -13,3 +13,30 @@
     replace: '1024M'
   when: ansible_distribution == 'Rocky'
 
+- name: enable apcu cli on rocky
+  replace:
+    path: /etc/opt/remi/php82/php.d/40-apcu.ini
+    regexp: ';apc.enable_cli=0'
+    replace: 'apc.enable_cli=1'
+  when: ansible_distribution == 'Rocky'
+
+- name: adjust opcache interned strings buffer on rocky
+  replace:
+    path: /etc/opt/remi/php82/php.d/10-opcache.ini
+    regexp: ';opcache.interned_strings_buffer=8'
+    replace: 'opcache.interned_strings_buffer={{ php_opcache }}'
+  when: ansible_distribution == 'Rocky'
+
+- name: adjust opcache interned strings buffer on ubuntu
+  replace:
+    path: /etc/php/8.2/apache2/php.ini
+    regexp: ';opcache.interned_strings_buffer=8'
+    replace: 'opcache.interned_strings_buffer={{ php_opcache }}'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: enable apcu cli on ubuntu
+  lineinfile:
+    path: /etc/php/8.2/apache2/conf.d/20-apcu.ini
+    insertafter: "extension=apcu.so"
+    line: "apc.enable_cli=1"
+  when: ansible_distribution == 'Ubuntu'

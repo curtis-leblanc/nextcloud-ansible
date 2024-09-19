@@ -4,19 +4,19 @@
     name: "{{ zfs_pool }}/nextcloud"
     state: present
     extra_zfs_properties:
-      mountpoint: '/srv/nextcloud'
+      mountpoint: "{{ nextcloud_data_dir }}"
   when: zfs_pool is defined
 
 - name: create nextcloud data directory
   file:
-    path: /srv/nextcloud
+    path: "{{ nextcloud_data_dir }}"
     state: directory
   when: zfs_pool is undefined
   
 - name: download and extract nextcloud
   ansible.builtin.unarchive:
-    src: https://download.nextcloud.com/server/releases/latest-27.tar.bz2
-    dest: /srv
+    src: https://download.nextcloud.com/server/releases/latest-29.tar.bz2
+    dest: "{{ install_dir }}"
     remote_src: yes
     list_files: true
     mode: '775'
@@ -26,8 +26,8 @@
 
 - name: download and extract nextcloud on rocky
   ansible.builtin.unarchive:
-    src: https://download.nextcloud.com/server/releases/latest-27.tar.bz2
-    dest: /srv
+    src: https://download.nextcloud.com/server/releases/latest-29.tar.bz2
+    dest: "{{ install_dir }}"
     remote_src: yes
     list_files: true
     mode: '775'

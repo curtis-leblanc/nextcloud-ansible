@@ -32,11 +32,14 @@ ubuntu_php_packages:
   - php8.2-cli
   - php8.2-bz2
   - php8.2-curl
+  - php8.2-imagick
   - php8.2-mbstring
   - php8.2-pgsql
   - php8.2-opcache
+  - php8.2-redis
   - php8.2-soap
   - php8.2-cgi
+  - php8.2-apcu
 
 rocky_php_packages:
   - php82
@@ -68,3 +71,17 @@ rocky_php_packages:
   - php82-php-xml
   - php82-php-zip
   - php82-php-zlib
+
+rocky_redis_packages:
+  - redis
+
+ubuntu_redis_packages:
+  - redis
+
+ubuntu_extract_packages:
+ - tar 
+ - unzip
+ - bzip2
+
+ubuntu_imagemagick_packages:
+ - imagemagick
