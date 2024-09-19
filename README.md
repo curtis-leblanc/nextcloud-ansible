@@ -1,5 +1,5 @@
 # nextcloud-ansible
-This is a playbook meant to install and configure Nextcloud and its dependencies on Ubuntu and Rocky hosts. This is still under development; exercise caution if implementing in a producting environment.
+This is a playbook meant to install and configure Nextcloud and its dependencies on Ubuntu and Rocky hosts. This playbook has been tested and verified on single-server configurations in which Nextcloud and the backend database exist on localhost.
 
 #Instructions
 Edit /group_vars/all.yml with the desired specifications for your instance. If you're not sure whether to change the preset settings, you can leave them alone.

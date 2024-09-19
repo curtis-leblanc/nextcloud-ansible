@@ -39,6 +39,7 @@ Fixed firewall issues on Rocky hosts.
 #Completing Installation
 
 Added a new directory for tasks related to completing installation.
-Added tasks to complete Nextcloud install from the playbook itself.
-Added addition configuration settings to improve overall Nextcloud functionality.
+Added tasks to complete Nextcloud install from the playbook itself. It sets database type, database user, database name, database password, database host, Nextcloud admin account username, and Nextcloud admin account password.
+Added addition configuration settings to improve overall Nextcloud functionality. These tasks include adding the host IP/FQDN to the trusted hosts array in Nextcloud's config.php file, adds memory cache settings, adds a default phone region, and adds a service window.
 Added tasks to configure SElinux permissions if enabled.
+Added tasks to configure file locking through Redis on the Nextcloud server.
