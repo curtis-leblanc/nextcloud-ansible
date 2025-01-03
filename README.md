@@ -3,6 +3,6 @@ This is a playbook meant to install and configure Nextcloud and its dependencies
 
 #Instructions
 Edit /group_vars/all.yml with the desired specifications for your instance. If you're not sure whether to change the preset settings, you can leave them alone.
-For the server name variable in /group_vars/all.yml, enter the domain name of the server that will run Nextcloud or enter its private IP address.
+For the server name variable in /group_vars/all.yml, enter the domain name of the server that will run Nextcloud or its public IP address. If it's being run internally, enter its private IP address instead.
 Edit the hosts file with the IP addresses of the hosts that this playbook will be run against. IF you're only installing Nextcloud on the current host, you can leave this alone as it is set to "localhost" by default.
 Run the playbook using "ansible-playbook -i hosts setup_nextcloud.yml".
