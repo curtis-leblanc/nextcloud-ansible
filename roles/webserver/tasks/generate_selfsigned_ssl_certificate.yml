@@ -29,3 +29,16 @@
   when:
     - ansible_distribution == 'Rocky'
     - ansible_distribution_major_version == "9"
+
+- name: copy key to new ssl path (rocky9)
+  ansible.builtin.copy:
+    src: /etc/ssl/certs/nextcloud.key
+    dest: /etc/pki/tls/private/localhost.key
+  when:
+    - ansible_distribution == 'Rocky'
+    - ansible_distribution_major_version == "9"
+
+
+
+
+
