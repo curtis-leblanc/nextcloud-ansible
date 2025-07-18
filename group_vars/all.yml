@@ -5,7 +5,7 @@ install_dir: /srv
 # Directory where nextcloud data lives. Should be same as the above variable followed by a Nextcloud directory (ex: if install_dir is set to /srv, this should be set to /srv/nextcloud.
 nextcloud_data_dir: /srv/nextcloud
 # Preferred to use domain name, if not available use IP address
-server_name:  
+server_name: 192.168.98.51  
 # If using self signed certificate - no if using lets_encrypt
 selfsigned_ssl_certificate: true
 # Path to self signed certificate
@@ -49,9 +49,9 @@ db_pass: Sup3rs#creTp@ssw0rd
 #Here, you can set parameters for your Nextcloud installation such as the required admin account username and password.
 
 #Name the Nextcloud admin account.
-next_admin: superuser
+next_admin: admin
 #Give the admin account a strong password.
-next_pass: Sup#Rstr)ngp4s5w0rd
+next_pass: P@ssw0rd#1
 #Add a default phone region for your Nextcloud server. The format is your country's two-letter ISO code. If you are not sure what your country's iso code is, find it here: https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
 phone_region: CA  
 ####################################################

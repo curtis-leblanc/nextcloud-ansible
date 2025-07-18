@@ -21,3 +21,11 @@
     path: "{{ ssl_crt_path }}"
     privatekey_path: "{{ ssl_key_path }}"
     provider: selfsigned
+
+- name: copy certificate to new ssl path (rocky9)
+  ansible.builtin.copy:
+    src: /etc/ssl/certs/nextcloud.crt
+    dest: /etc/pki/tls/certs/localhost.crt
+  when:
+    - ansible_distribution == 'Rocky'
+    - ansible_distribution_major_version == "9"

@@ -19,6 +19,10 @@ rocky_mariadb_packages:
  - mariadb-server
  - python3-mysql
 
+rocky9_mariadb_packages:
+ - mariadb-server
+ - python3-PyMySQL
+
 ubuntu_php_packages:
   - php8.2
   - php8.2-bcmath
